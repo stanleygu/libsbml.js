@@ -1,7 +1,7 @@
 {
   "name": "libsbml.js",
   "main": "libsbml.js",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "authors": [
     "Stanley Gu <stanleygu@gmail.com>"
   ],
