@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+  <script type="text/javascript" src="libsbml.js"></script>
+<script>
+var loadsbml = function () {
+  var doc = new libsbml.SBMLDocument(2,4);
+  if(doc == 0) {
+    console.log('failed to create doc');
+  }
+  console.log('num errors = ' + String(doc.getNumErrors()))
+
+  var model = doc.createModel();
+
+  model.setId('model1');
+
+  var comp = model.createCompartment();
+  comp.setId('comp1');
+  comp.setSize(1);
+
+  console.log('created compartment');
+
+  var sp1 = model.createSpecies();
+  sp1.setId('spec1');
+  sp1.setName('S1');
+  sp1.setInitialAmount(0);
+
+  console.log('Created species 1');
+
+  var sp2 = model.createSpecies();
+  sp2.setId('spec2');
+  sp2.setName('S2');
+  sp2.setInitialAmount(0);
+
+  console.log('Created species 2');
+
+  var rxn = model.createReaction();
+  rxn.setId('reaction1');
+
+  console.log('Created reaction');
+
+  var spr1 = rxn.createReactant();
+  spr1.setSpecies('spec1');
+
+  console.log('Created spec ref 1');
+
+  var spr2 = rxn.createReactant();
+  spr2.setSpecies('spec2');
+
+  console.log('Created spec ref 2');
+
+  var k1 = rxn.createKineticLaw();
+  var parser = new libsbml.SBMLFormulaParser();
+  var kmath = parser.parseL3Formula('S1*S2');
+
+  console.log('type of root note for math: ' + kmath.getType())
+  console.log('AST_TIMES: ' + libsbml.AST_TIMES)
+
+  k1.setMath(kmath);
+
+  console.log('Created kinetic law');
+
+  var writer = new libsbml.SBMLWriter();
+
+  console.log('Serializing model...\nto a multiline\nstring\n');
+
+  console.log(writer.writeSBMLToString(doc));
+};
+
+libsbml.onload(loadsbml);
+</script>
+</head>
+<body>
+</body>
+</html>

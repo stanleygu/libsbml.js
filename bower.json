@@ -1,0 +1,21 @@
+{
+  "name": "libsbml.js",
+  "main": "libsbml.js",
+  "version": "0.0.5",
+  "authors": [
+    "Stanley Gu <stanleygu@gmail.com>"
+  ],
+  "description": "libSBML in JavaScript",
+  "keywords": [
+    "libsbml"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/stanleygu/libsbml.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
